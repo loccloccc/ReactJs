@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Máy Tính Cơ Bản</title>
+  <style>
+    .main {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    input {
+      width: 200px;
+      height: 20px;
+      border: 1px black solid;
+      border-radius: 5px;
+    }
+    .button {
+      display: flex;
+      gap: 20px;
+    }
+    .button button {
+      width: 30px;
+      height: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div class="main">
+    <div class="input">
+      <input type="text" placeholder="Mời bạn nhập" id="numb1" />
+      <input type="text" placeholder="Mời bạn nhập" id="numb2" />
+    </div>
+    <div class="button">
+      <button onclick="click('+')">+</button>
+      <button onclick="click('-')">-</button>
+      <button onclick="click('*')">*</button>
+      <button onclick="click('/')">/</button>
+      <button onclick="click('^')">^</button>
+      <button onclick="click('√')">√</button>
+      <button onclick="click('!')">!</button>
+    </div>
+  </div>
+
+  <div class="resltHTML">Kết quả sẽ hiển thị tại đây</div>
+  <script src="" defer></script>
+</body>
+</html>
