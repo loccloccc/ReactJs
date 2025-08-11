@@ -39,6 +39,10 @@ class LendedBook{
 class Library{
     books :Book[]= [];
     members : Member[] = [];
+    constructor() {
+        this.books = [];
+        this.members = [];
+    }
     addBook(book:Book):void{
         this.books.push(book);
         console.log("them thanh cong");
