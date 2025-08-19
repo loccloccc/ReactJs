@@ -8,8 +8,6 @@ import Main from './Main'
 export default function UserLayout() {
   return (
     <div>
-      {/* <div className="header"><Header></Header></div>
-      <div className="navbar"><Navbar></Navbar></div> */}
       <Header></Header>
       <Navbar></Navbar>
       <div style={{

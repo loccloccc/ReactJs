@@ -9,6 +9,7 @@ import AdminIndex from '../components/PTIT_CNTT04_IT104_Session12_Bai06/AdminInd
 import UserLayout from '../components/PTIT_CNTT04_IT104_Session12_Bai07/UserLayout.jsx';
 import Ex8 from '../components/PTIT_CNTT04_IT104_Session12_Bai08/Ex8.jsx'
 import TodoListIndex from '../components/PTIT_CNTT04_IT104_Session12_Bai09/TodoListIndex.jsx'
+import Ex10 from '../components/PTIT_CNTT04_IT104_Session12_Bai10/Ex10.jsx'
 export default function App() {
   return (
     <>
@@ -39,6 +40,9 @@ export default function App() {
       {/* bai 9 */}
       <p>bai 9</p>
       <TodoListIndex></TodoListIndex>
+      {/* bai 10 */}
+      <p>bai 10</p>
+      <Ex10></Ex10>
     </>
   );
 }
