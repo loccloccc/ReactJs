@@ -7,7 +7,7 @@ type Job = {
 
 export default function TodoList() {
   const initial = {
-    jobs: JSON.parse(localStorage.getItem("jobs") || "[]"), // lấy từ local
+    jobs: JSON.parse(localStorage.getItem("jobs") || "[]"),
     new_title: "",
   };
 
@@ -15,14 +15,19 @@ export default function TodoList() {
     switch (action.type) {
       case "ADD": {
         const updated = [...state.jobs, action.payload];
-        localStorage.setItem("jobs", JSON.stringify(updated)); // lưu local
+        localStorage.setItem("jobs", JSON.stringify(updated));
         return { ...state, jobs: updated };
       }
       case "DELETE": {
-        console.log("tiến hành xóa công việc");
-        const result = state.jobs.filter((item: Job) => item.id != action.payload);
-        localStorage.setItem("jobs", JSON.stringify(result)); // lưu local
-        return { ...state, jobs: result };
+        const confirmOk = confirm("ban cos chan chan muon xoa khong");
+        if (confirmOk) {
+          console.log("tiến hành xóa công việc");
+          const result = state.jobs.filter(
+            (item: Job) => item.id != action.payload
+          );
+          localStorage.setItem("jobs", JSON.stringify(result));
+          return { ...state, jobs: result };
+        }
       }
       default:
         return state;
@@ -54,8 +59,7 @@ export default function TodoList() {
       {todos.jobs.map((item: Job, index: number) => {
         return (
           <li key={index}>
-            {item.title}{" "}
-            <button onClick={() => deleteJob(item.id)}>Xóa</button>
+            {item.title} <button onClick={() => deleteJob(item.id)}>Xóa</button>
           </li>
         );
       })}
