@@ -1,49 +1,43 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useReducer } from 'react'
 
-export default function Ex8() {
-  const initial = {
-    name: "",
-    email: ""
-  };
-
-  const inforReducer = (state: any, action: any) => {
+export default function Bai8() {
+  const initState = {
+    name: '',
+    email: ''
+  }
+  const formReducer = (state:any, action:any) => {
     switch (action.type) {
-      case "ADD":
-        return { ...state, [action.payload.name]: action.payload.value };
+      case 'SET_NAME':
+        return { ...state, name: action.payload }
+      case 'SET_EMAIL':
+        return { ...state, email: action.payload }
       default:
-        return state;
+        return state
     }
-  };
-
-  const [state, dispatch] = useReducer(inforReducer, initial);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    dispatch({ type: "ADD", payload: { name, value } });
-  };
-  useEffect(() => {
-    console.log("cap nhap thanh cong" , state);
-  },[state])
+  }
+  const [state, dispatch] = useReducer(formReducer, initState)
   return (
     <div>
-      <input
-        type="text"
-        name="name"
-        value={state.name}
-        onChange={handleChange}
-        placeholder="ho va ten"
-      />
-      <br />
-      <input
-        type="text"
-        name="email"
-        value={state.email}
-        onChange={handleChange}
-        placeholder="email"
-      />
-      <p>Thông tin</p>
-      <p>Ten :{state.name}</p>
-      <p>Email :{state.email}</p>
+      <h2>User Information Form</h2>
+      <div>
+        <label>Ten </label>
+        <input
+          type="text"
+          value={state.name}
+          onChange={(e) => dispatch({ type: 'SET_NAME', payload: e.target.value })}
+        />
+      </div>
+      <div>
+        <label>Email </label>
+        <input
+          type="email"
+          value={state.email}
+          onChange={(e) => dispatch({ type: 'SET_EMAIL', payload: e.target.value })}
+        />
+      </div>
+      <h3>Thong tin nguoi dung</h3>
+      <p>Ten: {state.name || '(Chua nhap)'}</p>
+      <p>Email: {state.email || '(Chua nhap)'}</p>
     </div>
-  );
+  )
 }
