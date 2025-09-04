@@ -17,8 +17,6 @@ export default function ToDoList() {
     return taskLocals ? JSON.parse(taskLocals) : [];
   });
   const [editId, setEditId] = useState<string | number | null>(null);
-
-  // Nhập công việc
   const handleChangeTask = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (!event.target.value) {
       setError("Tên công việc không được để trống");
@@ -28,8 +26,6 @@ export default function ToDoList() {
       setTask(event.target.value);
     }
   };
-
-  // Thêm hoặc cập nhật
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 
@@ -39,7 +35,6 @@ export default function ToDoList() {
     }
 
     if (editId) {
-      // Trường hợp đang sửa
       const updateTasks = tasks.map((t) =>
         t.id === editId ? { ...t, name: task } : t
       );
@@ -47,7 +42,6 @@ export default function ToDoList() {
       localStorage.setItem("tasks", JSON.stringify(updateTasks));
       setEditId(null);
     } else {
-      // Trường hợp thêm mới
       const newTask: Task = {
         id: uuid(),
         name: task,
@@ -60,8 +54,6 @@ export default function ToDoList() {
 
     setTask("");
   };
-
-  // Toggle completed
   const handleChangeStatus = (id: number | string) => {
     const updateTasks = tasks.map((task) =>
       task.id === id ? { ...task, isCompleted: !task.isCompleted } : task
@@ -69,8 +61,6 @@ export default function ToDoList() {
     setTasks(updateTasks);
     localStorage.setItem("tasks", JSON.stringify(updateTasks));
   };
-
-  // Sửa
   const handleChangeEdit = (id: number | string) => {
     const edit = tasks.find((i) => i.id === id);
     if (edit) {
@@ -78,8 +68,6 @@ export default function ToDoList() {
       setEditId(edit.id);
     }
   };
-
-  // Xóa
   const handleDelete = (id: number | string) => {
     const updateTasks = tasks.filter((task) => task.id !== id);
     setTasks(updateTasks);
