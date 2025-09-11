@@ -1,0 +1,127 @@
+import React, { useEffect, useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
+
+export interface List {
+  id: number;
+  name: string;
+  price: number;
+  description: string;
+}
+
+export const list: List[] = [
+  { id: 1, name: "Iphone 11 pro", price: 20000000, description: "may tinh hien dai" },
+  { id: 2, name: "Samsung", price: 30000000, description: "may tinh hien dai" },
+  { id: 3, name: "Laptop Dell 3", price: 40000000, description: "may tinh hien dai" },
+  { id: 4, name: "Iphone 12", price: 32000000, description: "may tinh hien dai" },
+  { id: 5, name: "Macbook", price: 44000000, description: "may tinh hien dai" },
+];
+
+export default function ProductList() {
+  const navi = useNavigate();
+  const [searchParams, setSearch] = useSearchParams();
+
+  const [name, setName] = useState<string>("");              // input text
+  const [searchResult, setSearchResult] = useState<List[]>(list); // kết quả hiển thị
+
+  const handleClick = (id: number) => {
+    navi(`/products/${id}`);
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setName(e.target.value);
+  };
+
+  const handleClick2 = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    setSearch({ search: name }); // update URL query
+    const searchData = list.filter((i) =>
+      i.name.toLowerCase().includes(name.toLowerCase().trim())
+    );
+    setSearchResult(searchData);
+    localStorage.setItem("flag", "1");
+  };
+
+  // 🔥 Khi load lại trang hoặc khi searchParams thay đổi
+  useEffect(() => {
+    const searchValue = searchParams.get("search") || "";
+    setName(searchValue);
+    if (searchValue) {
+      const filtered = list.filter((i) =>
+        i.name.toLowerCase().includes(searchValue.toLowerCase().trim())
+      );
+      setSearchResult(filtered);
+    } else {
+      setSearchResult(list); // nếu không có search thì hiển thị tất cả
+    }
+  }, [searchParams]);
+
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+      <div
+        style={{
+          width: "100%",
+          height: "100px",
+          backgroundColor: "burlywood",
+          color: "white",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <h1>Trang chi tiet san pham</h1>
+        <p>danh sach san pham</p>
+      </div>
+
+      {/* Thanh tìm kiếm */}
+      <div style={{ display: "flex", gap: "20px" }}>
+        <input
+          type="text"
+          placeholder="nhap san pham ban muon tim kiem"
+          style={{ width: "350px", height: "30px", borderRadius: "5px" }}
+          onChange={handleChange}
+          value={name}
+        />
+        <button
+          onClick={handleClick2}
+          style={{
+            width: "100px",
+            height: "35px",
+            backgroundColor: "blue",
+            color: "white",
+            border: "none",
+            borderRadius: "5px",
+          }}
+        >
+          Tim kiem
+        </button>
+      </div>
+
+      {/* Danh sách sản phẩm */}
+      <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
+        {searchResult.length > 0 ? (
+          searchResult.map((v) => (
+            <div
+              key={v.id}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                width: "150px",
+                border: "1px solid black",
+                textAlign: "center",
+              }}
+            >
+              <p>Ten: {v.name}</p>
+              <p>Gia: {Number(v.price).toLocaleString()}</p>
+              <button style={{ color: "blue" }} onClick={() => handleClick(v.id)}>
+                Xem chi tiet
+              </button>
+            </div>
+          ))
+        ) : (
+          <p>Không tìm thấy sản phẩm nào</p>
+        )}
+      </div>
+    </div>
+  );
+}
