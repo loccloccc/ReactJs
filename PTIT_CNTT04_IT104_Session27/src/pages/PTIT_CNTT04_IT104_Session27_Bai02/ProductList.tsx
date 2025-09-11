@@ -20,8 +20,8 @@ export default function ProductList() {
   const navi = useNavigate();
   const [searchParams, setSearch] = useSearchParams();
 
-  const [name, setName] = useState<string>("");              // input text
-  const [searchResult, setSearchResult] = useState<List[]>(list); // kết quả hiển thị
+  const [name, setName] = useState<string>("");             
+  const [searchResult, setSearchResult] = useState<List[]>(list); 
 
   const handleClick = (id: number) => {
     navi(`/products/${id}`);
@@ -33,7 +33,7 @@ export default function ProductList() {
 
   const handleClick2 = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    setSearch({ search: name }); // update URL query
+    setSearch({ search: name }); 
     const searchData = list.filter((i) =>
       i.name.toLowerCase().includes(name.toLowerCase().trim())
     );
@@ -41,7 +41,7 @@ export default function ProductList() {
     localStorage.setItem("flag", "1");
   };
 
-  // 🔥 Khi load lại trang hoặc khi searchParams thay đổi
+  
   useEffect(() => {
     const searchValue = searchParams.get("search") || "";
     setName(searchValue);
@@ -51,7 +51,7 @@ export default function ProductList() {
       );
       setSearchResult(filtered);
     } else {
-      setSearchResult(list); // nếu không có search thì hiển thị tất cả
+      setSearchResult(list);
     }
   }, [searchParams]);
 
@@ -73,7 +73,7 @@ export default function ProductList() {
         <p>danh sach san pham</p>
       </div>
 
-      {/* Thanh tìm kiếm */}
+      
       <div style={{ display: "flex", gap: "20px" }}>
         <input
           type="text"
@@ -97,7 +97,7 @@ export default function ProductList() {
         </button>
       </div>
 
-      {/* Danh sách sản phẩm */}
+      
       <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
         {searchResult.length > 0 ? (
           searchResult.map((v) => (
