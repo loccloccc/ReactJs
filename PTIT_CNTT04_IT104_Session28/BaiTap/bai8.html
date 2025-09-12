@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const numbers = [1, 2, 2, 3, 4, 5, 6];
+        function myFilter(numbers, value, callback) {
+            callback(value,numbers);
+        }
+        
+        function search(value,arr){
+            const arr2 = [];
+            arr.forEach(e => {
+                if(e === value) arr2.push(e);
+            });
+            console.log(arr2);
+        }
+        let value = +prompt("nhap so :")
+        myFilter(numbers,value,search);
+    </script>
+</body>
+</html>

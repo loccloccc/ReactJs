@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let task = [];
+
+      function addTask(callback) {
+        let name = prompt("Nhap ten:");
+        if (!name) {
+          alert("Ban chua nhap gi");
+          return;
+        } else {
+          task.push({ id: task.length + 1, name: name });
+          console.log(task);
+          callback();
+        }
+      }
+
+      function complete() {
+        console.log("Them thanh cong");
+      }
+
+      function deleteTask(callback) {
+        let name = prompt("Nhap ten muon xoa:");
+        if (!name) {
+          alert("Ban chua nhap gi");
+          return;
+        } else {
+          task = task.filter((i) => i.name !== name);
+          console.log(task);
+          callback();
+        }
+      }
+
+      function successDelete() {
+        console.log("Xoa thanh cong");
+      }
+
+      function render() {
+        document.body.innerHTML = "<h2>Danh sach cong viec:</h2>";
+        task.forEach((t) => {
+          document.body.innerHTML += `<p>${t.id}. ${t.name}</p>`;
+        });
+      }
+
+      let choice;
+      do {
+        choice = prompt(`
+      1 . Them cong viec
+      2 . Xoa cong viec
+      3 . Hien thi cong viec
+      4 . Thoat
+      Lua chon cua ban : 
+    `);
+
+        switch (choice) {
+          case "1":
+            addTask(complete);
+            break;
+          case "2":
+            deleteTask(successDelete);
+            break;
+          case "3":
+            render();
+            break;
+          case "4":
+            console.log("Thoat thanh cong");
+            break;
+          default:
+            console.log("Khong co su lua chon nay");
+            break;
+        }
+      } while (choice !== "4");
+    </script>
+  </body>
+</html>

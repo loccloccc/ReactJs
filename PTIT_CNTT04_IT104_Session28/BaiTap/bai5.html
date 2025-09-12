@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function checkCondition(condition,callback){
+            setTimeout(() => {
+                callback(condition)
+            }, 1000);
+        }
+        function condition(v){
+            console.log(`Dieu kien tra ve : ${v}`);
+        }
+        checkCondition(true,condition);
+    </script>
+</body>
+</html>

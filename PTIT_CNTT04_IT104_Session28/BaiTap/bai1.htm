@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bai 1</title>
+</head>
+<body>
+    <script>
+        function caculate(a,b,c){
+            let result = a + b;
+            c(result);
+        }
+        function callBackCaculate(result) {
+            console.log(`ket qu cua phep toan la : ${result}`);
+            document.write(`ket qua : ${result}`)
+        }
+        let numba = +prompt("moi nhap so 1");
+        let numbb = +prompt("moi nhap so 2")
+        caculate(numba,numbb,callBackCaculate);
+    </script>
+</body>
+</html>
