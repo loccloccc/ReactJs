@@ -1,0 +1,55 @@
+{
+  "product": [
+    {
+      "id": 1,
+      "product_name": "Sua Chua",
+      "image": "data:image/jpeg;base64,f",
+      "price": 10000,
+      "quantity": 10,
+      "created_at": "2025-10-15"
+    },
+    {
+      "id": 2,
+      "product_name": "che",
+      "image": "data:image/jpeg;base64,f",
+      "price": 10000,
+      "quantity": 10,
+      "created_at": "2025-10-15"
+    },
+    {
+      "id": 3,
+      "product_name": "men men",
+      "image": "data:image/jpeg;base64,f",
+      "price": 10000,
+      "quantity": 10,
+      "created_at": "2025-10-15"
+    },
+    {
+      "id": 4,
+      "product_name": "mi tom",
+      "image": "data:image/jpeg;base64,f",
+      "price": 10000,
+      "quantity": 10,
+      "created_at": "2025-10-15"
+    },
+    {
+      "id": 5,
+      "product_name": "bim bim",
+      "image": "data:image/jpeg;base64,f",
+      "price": 10000,
+      "quantity": 10,
+      "created_at": "2025-10-15"
+    }
+  ],
+  "students": [
+    {
+      "student_name": "Dương Đức Lộc",
+      "email": "loc@gmail.com",
+      "address": "Vĩnh Phúc",
+      "phone": "0123456789",
+      "status": true,
+      "created_at": "2025-10-15",
+      "id": 1
+    }
+  ]
+}
