@@ -1,0 +1,18 @@
+{
+  "users": [
+    {
+      "name": "doan duy",
+      "id": 3
+    },
+    {
+      "name": "binh gold",
+      "id": 4
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "iphone15"
+    }
+  ]
+}
