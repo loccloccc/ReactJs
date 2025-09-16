@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import Loading from "./componets/loading";
 type Data = {
   id: number;
   taskName: string;
@@ -7,10 +8,21 @@ type Data = {
 };
 export default function App() {
   const [data, setData] = useState<Data[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
   // lay data
   async function getData() {
-    let get_data = await axios.get("http://localhost:3000/tasks");
-    setData([...get_data.data]);
+    let result: Data[];
+
+    try {
+      let response = await axios.get("http://localhost:3000/tasks");
+      result = response.data;
+    } catch (error) {
+    } finally {
+      setTimeout(() => {
+        setLoading(false);
+        setData([...result]);
+      }, 1500);
+    }
   }
   useEffect(() => {
     getData();
@@ -68,105 +80,62 @@ export default function App() {
   };
 
   return (
-    <div
-      style={{
-        width: "30%",
-        margin: "auto",
-        display: "flex",
-        flexDirection: "column",
-        gap: "20px",
-        alignItems: "center",
-        boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
-      }}
-    >
-      <h2>Quản lí công việc</h2>
+    <>
+      {loading ? <Loading></Loading> : ""}
       <div
         style={{
+          width: "30%",
+          margin: "auto",
           display: "flex",
           flexDirection: "column",
-          gap: "10px",
+          gap: "20px",
           alignItems: "center",
-          justifyContent: "center",
-          width: "90%",
-          height: "100px",
           boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
-          borderRadius: "10px",
         }}
       >
-        <input
-          type="text"
-          placeholder="Nhap ten cong viec"
-          style={{
-            width: "90%",
-            height: "30px",
-            borderRadius: "5px",
-          }}
-          onChange={handleChange}
-          value={nameTask}
-        />
-        <button
-          style={{
-            width: "91%",
-            height: "35px",
-            borderRadius: "5px",
-            border: "none",
-            backgroundColor: "rgb(37,99,235)",
-            color: "white",
-          }}
-          onClick={handleAddTask}
-        >
-          Thêm công việc
-        </button>
-      </div>
-      <div
-        style={{
-          display: "flex",
-          gap: "10px",
-          alignItems: "center",
-          justifyContent: "center",
-          width: "90%",
-          height: "50px",
-          boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
-          borderRadius: "10px",
-        }}
-      >
-        <button
-          style={{
-            width: "80px",
-            height: "30px",
-            border: "none",
-            borderRadius: "5px",
-          }}
-        >
-          Tất cả
-        </button>
-        <button
-          style={{
-            width: "100px",
-            height: "30px",
-            border: "none",
-            borderRadius: "5px",
-          }}
-        >
-          Hoàn Thành
-        </button>
-        <button
-          style={{
-            width: "120px",
-            height: "30px",
-            border: "none",
-            borderRadius: "5px",
-          }}
-        >
-          Chưa hoàn thành
-        </button>
-      </div>
-      {data.map((value: any, index: number) => (
+        <h2>Quản lí công việc</h2>
         <div
-          key={index}
           style={{
             display: "flex",
-            gap: "100px",
+            flexDirection: "column",
+            gap: "10px",
+            alignItems: "center",
+            justifyContent: "center",
+            width: "90%",
+            height: "100px",
+            boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
+            borderRadius: "10px",
+          }}
+        >
+          <input
+            type="text"
+            placeholder="Nhap ten cong viec"
+            style={{
+              width: "90%",
+              height: "30px",
+              borderRadius: "5px",
+            }}
+            onChange={handleChange}
+            value={nameTask}
+          />
+          <button
+            style={{
+              width: "91%",
+              height: "35px",
+              borderRadius: "5px",
+              border: "none",
+              backgroundColor: "rgb(37,99,235)",
+              color: "white",
+            }}
+            onClick={handleAddTask}
+          >
+            Thêm công việc
+          </button>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            gap: "10px",
             alignItems: "center",
             justifyContent: "center",
             width: "90%",
@@ -175,56 +144,114 @@ export default function App() {
             borderRadius: "10px",
           }}
         >
-          <div style={{ display: "flex", gap: "10px" }}>
-            <input
-              type="checkbox"
-              checked={value.status}
-              onChange={(e) => handleStatus(e, value)}
-            />
-            {value.status===true ? <s>{value.taskName}</s> : <div>{value.taskName}</div>}
-            
-          </div>
-          <div style={{ display: "flex", gap: "10px" }}>
-            <button onClick={() => handleDeleteTask(value.id)}>Xoa</button>
-            <button onClick={() => handleEditTask(value)}>Sua</button>
-          </div>
+          <button
+            style={{
+              width: "80px",
+              height: "30px",
+              border: "none",
+              borderRadius: "5px",
+            }}
+          >
+            Tất cả
+          </button>
+          <button
+            style={{
+              width: "100px",
+              height: "30px",
+              border: "none",
+              borderRadius: "5px",
+            }}
+          >
+            Hoàn Thành
+          </button>
+          <button
+            style={{
+              width: "120px",
+              height: "30px",
+              border: "none",
+              borderRadius: "5px",
+            }}
+          >
+            Chưa hoàn thành
+          </button>
         </div>
-      ))}
-      <div
-        style={{
-          width: "100%",
-          height: "50px",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          gap: "15px",
-        }}
-      >
-        <button
+        <div
           style={{
-            width: "200px",
-            height: "35px",
-            borderRadius: "5px",
-            border: "none",
-            backgroundColor: "rgb(255,77,79)",
-            color: "white",
+            maxHeight: data.length > 5 ? "250px" : "auto",
+            overflowY: data.length > 5 ? "auto" : "visible",
+            width: "90%",
           }}
         >
-          Xóa công việc hoàn thành
-        </button>
-        <button
+          {data.map((value: any, index: number) => (
+            <div
+              key={index}
+              style={{
+                display: "flex",
+                gap: "100px",
+                alignItems: "center",
+                justifyContent: "center",
+                width: "100%",
+                height: "50px",
+                boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
+                borderRadius: "10px",
+                marginBottom: "10px",
+              }}
+            >
+              <div style={{ display: "flex", gap: "10px" }}>
+                <input
+                  type="checkbox"
+                  checked={value.status}
+                  onChange={(e) => handleStatus(e, value)}
+                />
+                {value.status === true ? (
+                  <s>{value.taskName}</s>
+                ) : (
+                  <div>{value.taskName}</div>
+                )}
+              </div>
+              <div style={{ display: "flex", gap: "10px" }}>
+                <button onClick={() => handleDeleteTask(value.id)}>Xoa</button>
+                <button onClick={() => handleEditTask(value)}>Sua</button>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div
           style={{
-            width: "200px",
-            height: "35px",
-            borderRadius: "5px",
-            border: "none",
-            backgroundColor: "rgb(255,77,79)",
-            color: "white",
+            width: "100%",
+            height: "50px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: "15px",
           }}
         >
-          Xóa tất cả công việc
-        </button>
+          <button
+            style={{
+              width: "200px",
+              height: "35px",
+              borderRadius: "5px",
+              border: "none",
+              backgroundColor: "rgb(255,77,79)",
+              color: "white",
+            }}
+          >
+            Xóa công việc hoàn thành
+          </button>
+          <button
+            style={{
+              width: "200px",
+              height: "35px",
+              borderRadius: "5px",
+              border: "none",
+              backgroundColor: "rgb(255,77,79)",
+              color: "white",
+            }}
+          >
+            Xóa tất cả công việc
+          </button>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
