@@ -1,25 +1,28 @@
 {
   "posts": [
     {
-      "id": 1,
-      "title": "Hoc ReactJs",
-      "image":"typicode",
-      "date":"17/09/2025",
-      "status":true
-    },
-    {
-      "id": 2,
-      "title": "Hoc HTML",
-      "image":"typicode",
-      "date":"17/09/2025",
-      "status":false
-    },
-    {
       "id": 3,
       "title": "Hoc CSS",
-      "image":"typicode",
-      "date":"17/09/2025",
-      "status":true
+      "image": "typicode",
+      "date": "17/09/2025",
+      "status": true,
+      "content": "aaaaaaaaaaaaaaaaa"
+    },
+    {
+      "title": "loc",
+      "image": "loc",
+      "date": 3,
+      "status": false,
+      "content": "loc",
+      "id": 4
+    },
+    {
+      "title": "an",
+      "image": "a",
+      "date": 3,
+      "status": false,
+      "content": "a",
+      "id": 5
     }
   ]
 }
