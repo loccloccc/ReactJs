@@ -5,7 +5,11 @@ const  initialState = {
 export const reducerCounter : any = (state= initialState , action:any)=>{
     switch (action.type) {
         case "INCREMENT":
-            return state.count+=1;
+            state.count = state.count + 1;
+            return {...state}
+        case "GIAM":
+            state.count = state.count - 1;
+            return {...state}
         default:
             return state
     }

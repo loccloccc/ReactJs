@@ -1,4 +1,4 @@
 import {createStore} from "redux"
-import { reducerCounter } from "./reduces/ReducerCount"
+import { rootReducer } from "./reduces/rootReducer"
 
-export const store = createStore(reducerCounter)
+export const store = createStore(rootReducer)
