@@ -1,0 +1,22 @@
+{
+  "students": [
+    {
+      "name": "s",
+      "age": 16,
+      "grade": "s",
+      "id": 2
+    },
+    {
+      "name": "duc loc",
+      "age": 16,
+      "grade": "11",
+      "id": 3
+    },
+    {
+      "name": "ngic",
+      "age": 16,
+      "grade": "11",
+      "id": 4
+    }
+  ]
+}
