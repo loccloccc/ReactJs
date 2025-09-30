@@ -1,0 +1,30 @@
+{
+  "products": [
+    {
+      "id": "99313328-7154-4100-8485-c838b60ac493",
+      "code": "SP8632",
+      "name": "Duong Duc Loc",
+      "category": "ao",
+      "price": 1111,
+      "image": "http://res.cloudinary.com/di8bnnkmd/image/upload/v1759235974/fidkuuorofkzvxnic2in.png",
+      "status": "active"
+    },
+    {
+      "id": "8073eb92-b815-4db4-a99b-3fcac4ba1046",
+      "code": "SP5528",
+      "name": "loc",
+      "category": "ao",
+      "price": 1111,
+      "image": "http://res.cloudinary.com/di8bnnkmd/image/upload/v1759236169/feoquwiseui5dmir5krs.png",
+      "status": "active"
+    }
+  ],
+  "categories": [
+    {
+      "id": "6da523a8-f583-442b-8391-58886f6ddff1",
+      "name": "Quần áo",
+      "description": "Quần áo màu",
+      "status": "active"
+    }
+  ]
+}
